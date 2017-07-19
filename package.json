@@ -1,0 +1,18 @@
+{
+  "name": "electron-windows-osk",
+  "version": "1.0.13",
+  "description": "",
+  "main": "export.js",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "nan": "2.6.2",
+    "node-gyp": "3.6.2"
+  },
+  "scripts": {
+    "compile": "node-gyp rebuild",
+    "start": "node main.js",
+    "reconfigure": "node-gyp configure rebuild --nodedir=\"C:\\node-6.10.2\\node-6.10.2\" --debug"
+  },
+  "gypfile": true
+}
