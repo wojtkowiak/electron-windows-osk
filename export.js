@@ -71,12 +71,13 @@ OSK.prototype.getSystem = function() {
  * Shows the OSK in regard to a html event. Tries to position the OSK according to event.target
  * element.
  * @param {number} inBrowserYOffset - browser event
- * @param {number} yOffset          - additional y offset for the OSK
+ * @param {number} height           - height of the input element
+ * @param {number} padding          - additional y offset for the OSK
  * @returns {boolean}
  */
-OSK.prototype.showFromEvent = function(inBrowserYOffset, yOffset) {
-    if (yOffset === undefined) {
-        yOffset = 0;
+OSK.prototype.showFromEvent = function(inBrowserYOffset, height, padding) {
+    if (padding === undefined) {
+        padding = 0;
     }
     // We need to know where the browser window is.
     var windowPosition = this.browserWindow.getPosition();
@@ -105,8 +106,8 @@ OSK.prototype.showFromEvent = function(inBrowserYOffset, yOffset) {
         windowPosition[1] +  // the screen y of the browser window position
         menuHeight +         // height of the menu if present
         topBarHeight +       // height of the window top bar
-        (system.borderThickness * borderCount) + // total height of the window borders
-        yOffset;             // additional screen y offset
+        (system.borderThickness * borderCount); // total height of the window borders
+
 
     // Now we calculate the OSK height as the percentage of the screen height.
     var display = screen.getPrimaryDisplay();
@@ -114,10 +115,17 @@ OSK.prototype.showFromEvent = function(inBrowserYOffset, yOffset) {
         (display.workAreaSize.height * this.keyboardHeightScreenPercentage) / 100
     );
 
+    // If the keyboard would go out of screen we need to position it above the element.
+    if (oskHeight + top + height + padding > display.workAreaSize.height) {
+        top -= padding + oskHeight - system.borderThickness;
+    } else {
+        top += height + padding;
+    }
+
     // OSK will be as wide as possible by default.
     var oskWidth = display.workAreaSize.width;
 
-    return this.show(0,top, oskWidth, oskHeight);
+    return this.show(0, top, oskWidth, oskHeight);
 };
 
 module.exports = OSK;
