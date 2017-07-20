@@ -4,6 +4,8 @@
 This experimental package allows you to show, close, resize and position the built in on-screen Windows keyboard. 
 Take a look at `export.js` to check out the API.
 
+This **should** work in Win 7 and up.
+
 Short example: 
 
 ```javascript
