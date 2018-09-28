@@ -1,13 +1,13 @@
 {
   "name": "electron-windows-osk",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "",
   "main": "export.js",
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "nan": "2.6.2",
-    "node-gyp": "3.6.2"
+    "nan": "2.11.0",
+    "node-gyp": "3.8.0"
   },
   "scripts": {
     "compile": "node-gyp rebuild",
