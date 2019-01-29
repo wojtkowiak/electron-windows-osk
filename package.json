@@ -9,6 +9,9 @@
     "nan": "2.11.0",
     "node-gyp": "3.8.0"
   },
+  "peerDependencies": {
+    "electron": "<4.0.0"
+  },
   "scripts": {
     "compile": "node-gyp rebuild",
     "start": "node main.js",
